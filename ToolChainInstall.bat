@@ -63,6 +63,8 @@ IF DEFINED NOT_HAVE_VSCODE (
     REM extract VSCODE
     echo unzip Visual Studio Code
     unzip -o %DOWNLOAD_DIR%\vscode.zip -d %BIN_DIR%\vscode
+    REM Force portable mode
+    mkdir %BIN_DIR%\vscode\data
   )
 )
 
