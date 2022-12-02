@@ -1,4 +1,4 @@
-@echo off
+REM @echo off
 REM Download an example project for building and debugging arm-code on a STM32VLDISCOVERY-Board
 
 call SetArmVscodeEnvironmet.bat

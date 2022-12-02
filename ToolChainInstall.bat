@@ -1,10 +1,11 @@
-@echo off
+REM @echo off
 REM This batch installs the arm-gcc toolchain, including several tools like make, git and rm
 REM under windows 10. The tools are only installed if they are not found in the path.
 
 REM Check for required variables
 if NOT DEFINED DOWNLOAD_DIR (
 echo Download directory not defined
+pause
 EXIT /B 1
 )
 if NOT DEFINED BIN_DIR (
@@ -15,10 +16,12 @@ EXIT /B 1
 REM Check for required directories
 if NOT EXIST "%DOWNLOAD_DIR%" (
 echo Download directory not found
+pause
 EXIT /B 1
 )
 if NOT EXIST "%BIN_DIR%" (
 echo Binary directory not found
+pause
 EXIT /B 1
 )
 
@@ -30,13 +33,13 @@ REM Check if tools have been unziped
 if DEFINED NOT_HAVE_UNZIP   if NOT EXIST "%BIN_DIR%\unzip"             set UNZIP_UNZIP=1
 
 REM Check if we have all required Downloads
-if DEFINED UNZIP_UNZIP  if NOT EXIST "%DOWNLOAD_DIR%\unzip-bin.zip"       set DOWNNLOAD_UNZIP=1
+if DEFINED UNZIP_UNZIP  if NOT EXIST "%DOWNLOAD_DIR%\unzip-bin.zip"       set DOWNLOAD_UNZIP=1
 
 IF DEFINED NOT_HAVE_UNZIP (
   REM check if rm dir exists
   if DEFINED UNZIP_UNZIP (
     REM download commandline unzip if needed
-    if DEFINED DOWNNLOAD_UNZIP (
+    if DEFINED DOWNLOAD_UNZIP (
       echo Download unzip
       curl -L https://gnuwin32.sourceforge.net/downlinks/unzip-bin-zip.php --output %DOWNLOAD_DIR%\unzip-bin.zip
     )
@@ -89,11 +92,11 @@ IF DEFINED NOT_HAVE_MAKE (
   REM check if make dir exists
   if DEFINED UNZIP_MAKE (
     REM get make if needed
-    if DEFINED DOWNNLOAD_MAKE_BIN (
+    if DEFINED DOWNLOAD_MAKE_BIN (
       echo Download make
       curl -L https://gnuwin32.sourceforge.net/downlinks/make-bin-zip.php --output %DOWNLOAD_DIR%\make-bin.zip
     )
-    if DEFINED DOWNNLOAD_MAKE_DEP (
+    if DEFINED DOWNLOAD_MAKE_DEP (
       curl -L https://gnuwin32.sourceforge.net/downlinks/make-dep-zip.php --output %DOWNLOAD_DIR%\make-dep.zip
     )
     REM and unzip
@@ -106,12 +109,12 @@ IF DEFINED NOT_HAVE_MAKE (
 IF DEFINED NOT_HAVE_UTILS (
   if DEFINED UNZIP_UTILS (
     REM get utils
-    if DEFINED DOWNNLOAD_UTILS_BIN (
+    if DEFINED DOWNLOAD_UTILS_BIN (
       echo Download ultilities
       curl -L https://gnuwin32.sourceforge.net/downlinks/coreutils-bin-zip.php --output %DOWNLOAD_DIR%\utils-bin.zip
     )
 
-    if DEFINED DOWNNLOAD_UTILS_DEP (
+    if DEFINED DOWNLOAD_UTILS_DEP (
       curl -L https://gnuwin32.sourceforge.net/downlinks/coreutils-dep-zip.php --output %DOWNLOAD_DIR%\utils-dep.zip
     )
 
