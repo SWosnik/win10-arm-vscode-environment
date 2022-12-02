@@ -1,4 +1,4 @@
-@echo off
+@if NOT DEFINED DEBUG_BAT @echo off
 
 call SetArmVscodeEnvironmet.bat
 

@@ -1,4 +1,4 @@
-REM @echo off
+@if NOT DEFINED DEBUG_BAT @echo off
 REM This batch installs the arm-gcc toolchain, including several tools like make, git and rm
 REM under windows 10. The tools are only installed if they are not found in the path.
 
@@ -62,7 +62,7 @@ IF DEFINED NOT_HAVE_VSCODE (
 
     REM extract VSCODE
     echo unzip Visual Studio Code
-    unzip -q -o %DOWNLOAD_DIR%\vscode.zip -d %BIN_DIR%\vscode
+    unzip -o %DOWNLOAD_DIR%\vscode.zip -d %BIN_DIR%\vscode
     REM check if vcode settings exist and if not: generate a default
     if NOT EXIST "%AppData%\Roaming\Code\User\settings.json" (
       REM No Welcome Display
@@ -82,7 +82,7 @@ IF DEFINED NOT_HAVE_GCC (
     )
     echo unzip toolchain
     REM unzip toolchain
-    unzip -q -o %DOWNLOAD_DIR%\arm-none-eabi.zip -d %BIN_DIR%\
+    unzip -o %DOWNLOAD_DIR%\arm-none-eabi.zip -d %BIN_DIR%\
     REM rename tools-Path
     move %BIN_DIR%\arm-gnu-* %BIN_DIR%\arm-gnu-toolchain
   )
@@ -101,8 +101,8 @@ IF DEFINED NOT_HAVE_MAKE (
     )
     REM and unzip
     echo unzip make
-    unzip -q -o %DOWNLOAD_DIR%\make-bin.zip -d %BIN_DIR%\make
-    unzip -q -o %DOWNLOAD_DIR%\make-dep.zip -d %BIN_DIR%\make
+    unzip -o %DOWNLOAD_DIR%\make-bin.zip -d %BIN_DIR%\make
+    unzip -o %DOWNLOAD_DIR%\make-dep.zip -d %BIN_DIR%\make
   )
 )
 
@@ -119,8 +119,8 @@ IF DEFINED NOT_HAVE_UTILS (
     )
 
     echo unzip utils
-    unzip -q -o %DOWNLOAD_DIR%\utils-bin.zip -d %BIN_DIR%\utils
-    unzip -q -o %DOWNLOAD_DIR%\utils-dep.zip -d %BIN_DIR%\utils
+    unzip -o %DOWNLOAD_DIR%\utils-bin.zip -d %BIN_DIR%\utils
+    unzip -o %DOWNLOAD_DIR%\utils-dep.zip -d %BIN_DIR%\utils
   )
 )
 
@@ -133,7 +133,7 @@ IF DEFINED NOT_HAVE_GIT (
     )
     echo unzip git
     REM unzip git
-    unzip -q -o %DOWNLOAD_DIR%\MinGit.zip -d %BIN_DIR%\git
+    unzip -o %DOWNLOAD_DIR%\MinGit.zip -d %BIN_DIR%\git
   )
 )
 
