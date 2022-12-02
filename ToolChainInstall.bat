@@ -63,12 +63,6 @@ IF DEFINED NOT_HAVE_VSCODE (
     REM extract VSCODE
     echo unzip Visual Studio Code
     unzip -o %DOWNLOAD_DIR%\vscode.zip -d %BIN_DIR%\vscode
-    REM check if vcode settings exist and if not: generate a default
-    if NOT EXIST "%AppData%\Roaming\Code\User\settings.json" (
-      REM No Welcome Display
-      mkdir %AppData%\Code\User
-      echo { "workbench.startupEditor": "none" } > %AppData%\Code\User\settings.json
-    )
   )
 )
 
